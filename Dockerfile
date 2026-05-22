@@ -6,6 +6,8 @@ COPY package*.json ./
 
 RUN npm install
 
+RUN chmod +x node_modules/.bin/prisma
+
 COPY prisma ./prisma/
 
 RUN node_modules/.bin/prisma generate
