@@ -31,6 +31,9 @@
     "prisma": "^5.10.0",
     "supertest": "^6.3.4"
   },
+  "prisma": {
+    "seed": "node prisma/seed.js"
+  },
   "jest": {
     "testEnvironment": "node",
     "transform": {},
