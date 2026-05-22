@@ -6,14 +6,14 @@ COPY package*.json ./
 
 RUN npm install
 
-RUN chmod +x node_modules/.bin/prisma
+RUN npm install -g prisma@5.10.0
 
 COPY prisma ./prisma/
 
-RUN node_modules/.bin/prisma generate
+RUN prisma generate
 
 COPY . .
 
 EXPOSE 5001
 
-CMD ["sh", "-c", "node_modules/.bin/prisma migrate deploy && node_modules/.bin/prisma db seed && node src/index.js"]
+CMD ["sh", "-c", "prisma migrate deploy && prisma db seed && node src/index.js"]
