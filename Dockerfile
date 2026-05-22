@@ -8,10 +8,10 @@ RUN npm install
 
 COPY prisma ./prisma/
 
-RUN npx prisma generate
+RUN node_modules/.bin/prisma generate
 
 COPY . .
 
 EXPOSE 5001
 
-CMD ["sh", "-c", "npx prisma migrate deploy && npx prisma db seed && node src/index.js"]
+CMD ["sh", "-c", "node_modules/.bin/prisma migrate deploy && node_modules/.bin/prisma db seed && node src/index.js"]
