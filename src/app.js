@@ -7,7 +7,6 @@ import dotenv from 'dotenv';
 import authRoutes from './routes/authRoutes.js';
 import categoryRoutes from './routes/categoryRoutes.js';
 import bookRoutes from './routes/bookRoutes.js';
-import loanRoutes from './routes/loanRoutes.js';
 
 dotenv.config();
 
@@ -25,7 +24,6 @@ app.get('/api/health', (req, res) => {
 app.use('/api/auth', authRoutes);
 app.use('/api/categories', categoryRoutes);
 app.use('/api/books', bookRoutes);
-app.use('/api/loans', loanRoutes);
 
 app.use((err, req, res, next) => {
   console.error(err.stack);

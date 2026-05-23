@@ -26,8 +26,8 @@ async function main() {
   const fictionCat = await prisma.category.create({ data: { name: 'Ciencia Ficción', description: 'Literatura fantástica, distopías y viajes espaciales.' } });
 
   const booksData = [
-    { title: 'Clean Code', author: 'Robert C. Martin', editorial: 'Prentice Hall', edition: '1ra Edición', publicationDate: new Date('2008-08-01'), isbn: '978-0132350884', totalCopies: 5, availableCopies: 5, categoryId: softwareCat.id },
-    { title: 'Design Patterns', author: 'Erich Gamma et al.', editorial: 'Addison-Wesley', edition: '1ra Edición', publicationDate: new Date('1994-10-31'), isbn: '978-0201633610', totalCopies: 3, availableCopies: 3, categoryId: softwareCat.id },
+    { title: 'Clean Code: A Handbook of Agile Software Craftsmanship', author: 'Robert C. Martin', editorial: 'Prentice Hall', edition: '1ra Edición', publicationDate: new Date('2008-08-01'), isbn: '978-0132350884', totalCopies: 5, availableCopies: 5, categoryId: softwareCat.id },
+    { title: 'Design Patterns: Elements of Reusable Object-Oriented Software', author: 'Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides', editorial: 'Addison-Wesley', edition: '1ra Edición', publicationDate: new Date('1994-10-31'), isbn: '978-0201633610', totalCopies: 3, availableCopies: 3, categoryId: softwareCat.id },
     { title: 'Cálculo de una Variable', author: 'James Stewart', editorial: 'Cengage Learning', edition: '7ma Edición', publicationDate: new Date('2012-01-01'), isbn: '978-6074817775', totalCopies: 2, availableCopies: 2, categoryId: mathCat.id },
     { title: 'Dune', author: 'Frank Herbert', editorial: 'Chilton Books', edition: 'Edición Especial', publicationDate: new Date('1965-08-01'), isbn: '978-0441172719', totalCopies: 1, availableCopies: 1, categoryId: fictionCat.id },
     { title: 'Fahrenheit 451', author: 'Ray Bradbury', editorial: 'Ballantine Books', edition: 'Reimpresión', publicationDate: new Date('1953-10-19'), isbn: '978-1451673319', totalCopies: 4, availableCopies: 4, categoryId: fictionCat.id },
