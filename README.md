@@ -8,7 +8,7 @@ El sistema debe permitir crear usuarios con los siguientes roles:
 - Bibliotecario
 - Cliente
 
----
+
 
 ### RF-02: Gestión de libros
 El sistema debe permitir registrar libros con la siguiente información:
@@ -19,7 +19,7 @@ El sistema debe permitir registrar libros con la siguiente información:
 - Nombre de editorial
 - Fecha de publicación
 
----
+
 
 ### RF-03: Gestión de préstamos
 El sistema debe permitir registrar préstamos de libros a usuarios incluyendo:
@@ -28,7 +28,7 @@ El sistema debe permitir registrar préstamos de libros a usuarios incluyendo:
 - Nombre del libro
 - Usuario al que fue prestado
 
----
+
 
 ### RF-04: Filtrado de libros
 El sistema debe permitir filtrar libros por diferentes campos relevantes, tales como:
