@@ -5,6 +5,7 @@ import morgan from 'morgan';
 import dotenv from 'dotenv';
 
 import authRoutes from './routes/authRoutes.js';
+import categoryRoutes from './routes/categoryRoutes.js';
 
 dotenv.config();
 
@@ -20,6 +21,7 @@ app.get('/api/health', (req, res) => {
 });
 
 app.use('/api/auth', authRoutes);
+app.use('/api/categories', categoryRoutes);
 
 app.use((err, req, res, next) => {
   console.error(err.stack);
