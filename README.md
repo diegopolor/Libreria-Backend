@@ -78,3 +78,4 @@ El sistema debe limitar las funcionalidades según el rol del usuario:
 - Filtrado y búsqueda de libros
 - Ordenamiento de catálogo
 - Autenticación y autorización por roles
+
