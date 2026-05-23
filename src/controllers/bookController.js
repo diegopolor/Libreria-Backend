@@ -1,12 +1,8 @@
 import { BookService } from '../services/bookService.js';
 
 export const createBook = async (req, res) => {
-  try {
-    const book = await BookService.createBook(req.body);
-    return res.status(201).json(book);
-  } catch (error) {
-    return res.status(400).json({ message: error.message });
-  }
+  try { return res.status(201).json(await BookService.createBook(req.body)); }
+  catch (error) { return res.status(400).json({ message: error.message }); }
 };
 
 export const getBooks = async (req, res) => {

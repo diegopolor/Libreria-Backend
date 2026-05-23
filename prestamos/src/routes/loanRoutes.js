@@ -10,7 +10,6 @@ router.post('/request', requestLoan);
 router.get('/history', getHistory);
 router.get('/', getLoans);
 
-// Rutas de administración de préstamos (Cola FIFO, devoluciones)
 router.post('/:id/return', requireRole(['ADMIN', 'LIBRARIAN']), returnBook);
 router.get('/queue', requireRole(['ADMIN', 'LIBRARIAN']), getRequestQueue);
 router.post('/requests/:id/approve', requireRole(['ADMIN', 'LIBRARIAN']), approveRequest);

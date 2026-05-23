@@ -141,7 +141,6 @@ async function main() {
     await prisma.book.create({ data: book });
   }
 
-  console.log('Libros iniciales sembrados con éxito.');
   console.log('Base de datos inicializada correctamente.');
 }
 

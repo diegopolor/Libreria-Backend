@@ -20,7 +20,7 @@ export class LoanService {
       return { request: { ...request, status: 'APPROVED' }, loan };
     }
 
-    return { request, loan: null, message: 'La solicitud ha sido encolada.' };
+    return { request, loan: null, message: 'La solicitud ha sido encolada (sin copias disponibles o hay cola de espera).' };
   }
 
   static async returnBook(loanId) {

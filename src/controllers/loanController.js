@@ -19,9 +19,7 @@ export const requestLoan = async (req, res) => {
 
 export const returnBook = async (req, res) => {
   try {
-    const { id } = req.params; // ID del préstamo
-    const loan = await LoanService.returnBook(id);
-    return res.status(200).json(loan);
+    return res.status(200).json(await LoanService.returnBook(req.params.id));
   } catch (error) {
     return res.status(400).json({ message: error.message });
   }
@@ -30,22 +28,11 @@ export const returnBook = async (req, res) => {
 export const getLoans = async (req, res) => {
   try {
     const filters = {};
-    // Si es CLIENT, solo ve sus propios préstamos
-    if (req.user.role === 'CLIENT') {
-      filters.userId = req.user.id;
-    } else if (req.query.userId) {
-      filters.userId = req.query.userId;
-    }
-
-    if (req.query.status) {
-      filters.status = req.query.status;
-    }
-    if (req.query.bookId) {
-      filters.bookId = req.query.bookId;
-    }
-
-    const loans = await LoanService.getLoans(filters);
-    return res.status(200).json(loans);
+    if (req.user.role === 'CLIENT') filters.userId = req.user.id;
+    else if (req.query.userId) filters.userId = req.query.userId;
+    if (req.query.status) filters.status = req.query.status;
+    if (req.query.bookId) filters.bookId = req.query.bookId;
+    return res.status(200).json(await LoanService.getLoans(filters));
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
@@ -54,15 +41,9 @@ export const getLoans = async (req, res) => {
 export const getHistory = async (req, res) => {
   try {
     let targetUserId = null;
-    // Si es cliente, solo ve su propio historial (Pila LIFO)
-    if (req.user.role === 'CLIENT') {
-      targetUserId = req.user.id;
-    } else if (req.query.userId) {
-      targetUserId = req.query.userId;
-    }
-
-    const history = await LoanService.getHistory(targetUserId);
-    return res.status(200).json(history);
+    if (req.user.role === 'CLIENT') targetUserId = req.user.id;
+    else if (req.query.userId) targetUserId = req.query.userId;
+    return res.status(200).json(await LoanService.getHistory(targetUserId));
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
@@ -70,9 +51,7 @@ export const getHistory = async (req, res) => {
 
 export const getRequestQueue = async (req, res) => {
   try {
-    const { bookId } = req.query;
-    const queue = await LoanService.getRequestQueue(bookId);
-    return res.status(200).json(queue);
+    return res.status(200).json(await LoanService.getRequestQueue(req.query.bookId));
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
@@ -80,9 +59,7 @@ export const getRequestQueue = async (req, res) => {
 
 export const approveRequest = async (req, res) => {
   try {
-    const { id } = req.params; // ID de la solicitud
-    const loan = await LoanService.approveLoanRequest(id);
-    return res.status(200).json(loan);
+    return res.status(200).json(await LoanService.approveLoanRequest(req.params.id));
   } catch (error) {
     return res.status(400).json({ message: error.message });
   }
@@ -90,9 +67,7 @@ export const approveRequest = async (req, res) => {
 
 export const rejectRequest = async (req, res) => {
   try {
-    const { id } = req.params; // ID de la solicitud
-    const request = await LoanService.rejectLoanRequest(id);
-    return res.status(200).json(request);
+    return res.status(200).json(await LoanService.rejectLoanRequest(req.params.id));
   } catch (error) {
     return res.status(400).json({ message: error.message });
   }
