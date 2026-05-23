@@ -1,7 +1,7 @@
 {
-  "name": "biblioteca-categorias",
+  "name": "biblioteca-historial",
   "version": "1.0.0",
-  "description": "Feature: Categorías - Sistema de Gestión de Biblioteca",
+  "description": "Feature: Historial de Préstamos - Sistema de Gestión de Biblioteca",
   "main": "src/index.js",
   "type": "module",
   "scripts": {

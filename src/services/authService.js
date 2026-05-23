@@ -6,10 +6,8 @@ export class AuthService {
   static async login(email, password) {
     const user = await prisma.user.findUnique({ where: { email } });
     if (!user) throw new Error('Credenciales incorrectas.');
-
     const isMatch = await bcrypt.compare(password, user.passwordHash);
     if (!isMatch) throw new Error('Credenciales incorrectas.');
-
     return {
       user: { id: user.id, name: user.name, email: user.email, role: user.role },
       accessToken: this.generateAccessToken(user),

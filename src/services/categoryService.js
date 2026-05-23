@@ -8,10 +8,7 @@ export class CategoryService {
   }
 
   static async getCategories() {
-    return await prisma.category.findMany({
-      orderBy: { name: 'asc' },
-      include: { _count: { select: { books: true } } },
-    });
+    return await prisma.category.findMany({ orderBy: { name: 'asc' }, include: { _count: { select: { books: true } } } });
   }
 
   static async updateCategory(id, { name, description }) {
