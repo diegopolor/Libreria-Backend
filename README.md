@@ -1,5 +1,89 @@
 # Sistema de Gestión de Biblioteca
 
+## Requisitos Previos
+
+- [Node.js](https://nodejs.org/) v18 o superior
+- [npm](https://www.npmjs.com/) v9 o superior
+- [Docker](https://www.docker.com/) y Docker Compose (para la base de datos o despliegue completo)
+
+## Instalación y Configuración
+
+### 1. Clonar el repositorio
+
+```bash
+git clone <url-del-repositorio>
+cd Biblioteca-Backend
+```
+
+### 2. Instalar dependencias
+
+```bash
+npm install
+```
+
+### 3. Configurar variables de entorno
+
+Copiar el archivo de ejemplo y completar los valores:
+
+```bash
+cp .env.example .env
+```
+
+| Variable | Descripción | Ejemplo |
+|---|---|---|
+| `PORT` | Puerto en que corre el servidor | `5000` |
+| `DATABASE_URL` | Cadena de conexión a PostgreSQL | `postgresql://user:pass@localhost:5432/biblioteca` |
+| `JWT_SECRET` | Clave secreta para tokens de acceso | `mi_clave_secreta` |
+| `JWT_REFRESH_SECRET` | Clave secreta para tokens de refresco | `mi_clave_refresco` |
+| `JWT_EXPIRES_IN` | Expiración del token de acceso | `15m` |
+| `JWT_REFRESH_EXPIRES_IN` | Expiración del token de refresco | `7d` |
+| `NODE_ENV` | Entorno de ejecución | `development` |
+
+### 4. Levantar la base de datos con Docker
+
+```bash
+docker-compose up -d db
+```
+
+### 5. Ejecutar migraciones y generar el cliente Prisma
+
+```bash
+npm run prisma:generate
+npm run prisma:migrate
+```
+
+### 6. (Opcional) Poblar la base de datos con datos iniciales
+
+```bash
+npm run prisma:seed
+```
+
+### 7. Iniciar el servidor
+
+```bash
+# Modo desarrollo (con recarga automática)
+npm run dev
+
+# Modo producción
+npm start
+```
+
+El servidor estará disponible en `http://localhost:5000`.
+
+---
+
+### Despliegue con Docker Compose (completo)
+
+Para levantar tanto la base de datos como el backend en contenedores:
+
+```bash
+docker-compose up -d
+```
+
+El backend quedará expuesto en `http://localhost:5001`.
+
+---
+
 ## Requerimientos Funcionales
 
 ### RF-01: Gestión de Usuarios y Roles
