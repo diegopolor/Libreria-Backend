@@ -1,4 +1,4 @@
-# Libreria-Front
+# Sistema de Gestión de Biblioteca
 
 ## Requerimientos Funcionales
 
