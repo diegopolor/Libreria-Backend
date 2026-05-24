@@ -1,21 +1,41 @@
 # Libreria-Front
 
-## Historias de Usuario
+## Requerimientos Funcionales
 
-### Administrador
-- Como administrador, quiero crear usuarios dentro del sistema para permitir el acceso de diferentes personas a la plataforma de biblioteca.
-- Como administrador, quiero asignar roles a los usuarios para controlar los permisos y funcionalidades disponibles para cada tipo de usuario.
-- Como administrador, quiero gestionar los permisos de cada rol para garantizar la seguridad y el correcto funcionamiento del sistema.
-- Como administrador, quiero restringir las funciones del bibliotecario únicamente a la gestión de libros y préstamos para mantener el control administrativo de los usuarios y roles.
+### RF-01: Gestión de Usuarios y Roles
+- **Descripción:** Permitir al sistema registrar usuarios asignando credenciales únicas y perfiles determinados (Administrador, Bibliotecario, Cliente).
+- **Criterio de Aceptación:** Un usuario con rol de Administrador puede cambiar el rol de otros usuarios. El sistema debe impedir accesos no autorizados.
 
-### Bibliotecario
-- Como bibliotecario, quiero registrar nuevos libros con información como nombre, categoría, autor, editorial, edición y fecha de publicación para mantener actualizado el catálogo de la biblioteca.
-- Como bibliotecario, quiero editar la información de los libros registrados para corregir o actualizar datos cuando sea necesario.
-- Como bibliotecario, quiero registrar préstamos de libros a los usuarios para llevar control de los libros entregados y sus fechas de devolución.
-- Como bibliotecario, quiero consultar el historial de préstamos realizados para hacer seguimiento a los libros prestados y devueltos.
+### RF-02: Gestión de Libros dentro del Catálogo
+- **Descripción:** Permitir la creación, lectura, actualización y eliminación (CRUD) de libros en el inventario.
+- **Campos Obligatorios de Almacenamiento:**
+  - Nombre del libro
+  - Categoría / Género
+  - Autor(es)
+  - Edición
+  - Editorial
+  - Fecha de publicación
+- **Criterio de Aceptación:** El sistema no debe permitir el registro de un libro si falta alguno de los metadatos obligatorios.
 
-### Usuario
-- Como usuario, quiero buscar libros por nombre, autor, categoría, editorial o edición para encontrar rápidamente el libro que necesito.
-- Como usuario, quiero filtrar los libros disponibles según diferentes criterios para facilitar la navegación dentro del catálogo.
-- Como usuario, quiero ordenar los libros alfabéticamente o por fecha de publicación para visualizar el catálogo de una manera más organizada.
-- Como usuario autenticado, quiero iniciar sesión mediante un sistema de autenticación basado en tokens para acceder de forma segura a la plataforma.
+### RF-03: Gestión y Almacenamiento de Préstamos
+- **Descripción:** Administrar el flujo de salida y retorno de los libros a los usuarios registrados en el sistema.
+- **Campos Obligatorios de Almacenamiento:**
+  - Fecha de préstamo
+  - Fecha de devolución (límite/real)
+  - Libro prestado (ID/Código único)
+  - Usuario asociado al préstamo
+- **Criterio de Aceptación:** Si un libro ya se encuentra en estado "Prestado", el sistema debe bloquear cualquier intento de nueva asignación hasta que se registre su devolución.
+
+### RF-04: Filtrado y Búsqueda Avanzada de Libros
+- **Descripción:** Proveer herramientas de búsqueda eficientes para optimizar la experiencia de consulta en el catálogo.
+- **Criterios de Filtrado:** Nombre, Autor, Editorial, Categoría y Edición.
+- **Criterio de Aceptación:** El sistema debe retornar coincidencias exactas o parciales según los parámetros ingresados, visibles para todos los roles (incluyendo Clientes).
+
+### RF-05: Ordenamiento de Catálogo
+- **Descripción:** Permitir la organización visual de los libros en los paneles de visualización.
+- **Criterios de Orden:** Fecha de publicación y Orden alfabético (A-Z / Z-A).
+- **Criterio de Aceptación:** El orden se debe aplicar de manera inmediata sobre los resultados de la consulta activa.
+
+### RF-06: Autenticación y Autorización por Roles (Seguridad)
+- **Descripción:** Implementar un mecanismo de seguridad mediante la generación de tokens para el manejo estricto de sesiones activas.
+- **Criterio de Aceptación:** El token de sesión debe expirar tras un periodo de inactividad. Los endpoints y vistas del software se deben restringir dinámicamente según el rol decodificado en el token (vistas de administración ocultas para perfiles tipo Cliente).
